@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Мой Mini App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Скрипт Telegram Web Apps (подключается автоматически в среде Telegram) -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>👋 Привет, <span id="user-name">друг</span>!</h1>
+
+    <div class="info-card">
+      <p><strong>ID пользователя:</strong> <span id="user-id">—</span></p>
+      <p><strong>Тема:</strong> <span id="theme">—</span></p>
+      <p><strong>Платформа:</strong> <span id="platform">—</span></p>
+    </div>
+
+    <button id="main-btn" class="tg-button">Нажми меня</button>
+
+    <div id="counter" class="counter">Счётчик: 0</div>
+
+    <button id="close-btn" class="tg-button secondary">Закрыть приложение</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
