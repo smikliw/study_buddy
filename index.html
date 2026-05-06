@@ -1,4 +1,4 @@
-Вот обновлённый HTML-документ, в котором кнопки управления в игре «Змейка» выровнены идеально ровно и выглядят как аккуратный D-pad.
+Вот обновлённый HTML-документ. В игру «Змейка» добавлен идеально ровный D-pad, а также новый питомец — «Котёнок».
 ```html
 <!DOCTYPE html>
 <html lang="ru">
@@ -249,14 +249,12 @@
     <div id="gradesPage" class="page"><h3>📝 Мои оценки</h3><div class="weekdays" id="weekdaysContainer"></div><div id="avgMoodInfo" style="margin-top: 12px;"></div><p style="font-size:13px;">✨ Нажми на кружок оценки, чтобы удалить.</p></div>
     <div id="homeworkPage" class="page"><h3>📌 Мое домашнее задание</h3><div id="homeworkList"></div><div class="add-homework"><input type="text" id="newHwSubject" placeholder="Название предмета"><button id="addHwBtn">➕ Добавить</button></div><p style="font-size:12px;">✔️ Отмечай галочкой — поднимешь настроение питомца!</p></div>
     <div id="gamesPage" class="page"><h3>🎲 Мини-игры для питомца</h3><div class="games-grid"><div class="game-card">🐍 Змейка <button class="play-game-btn" data-game="snake">Играть →</button></div><div class="game-card">📖 Угадай слово <button class="play-game-btn" data-game="words">Играть →</button></div><div class="game-card">🏓 Пинг-понг <button class="play-game-btn" data-game="pong">Играть →</button></div></div><div id="gameEnergyMsg" class="energy-warning"></div><p>⚡ Каждая игра тратит 15% энергии. Восстанавливается со временем (+5% каждые 20 сек) или за ДЗ!</p></div>
-    <div id="settingsPage" class="page"><h3>⚙️ Настройки</h3><div class="settings-row"><label>🐕 Имя питомца: </label><input type="text" id="petNameInput"><button id="renameBtn">Сохранить</button></div><div class="settings-row"><div>🎨 Тема фона:</div><div id="themeOptions"><span data-theme="default" class="pet-option">🌞 Классика</span><span data-theme="forest" class="pet-option">🌿 Лес</span><span data-theme="ocean" class="pet-option">🌊 Океан</span><span data-theme="sunset" class="pet-option">🌅 Закат</span></div></div><div class="settings-row"><div>🐱 Выбери питомца (картинка):</div><div id="petVariants"><span data-pet="panda" class="pet-option">🐵 Обезьянка</span><span data-pet="cat" class="pet-option">🐼 Панда</span><span data-pet="dog" class="pet-option">🦒 Жираф</span></div></div><hr><p>✨ Питомец радуется хорошим оценкам и выполненным заданиям!</p></div>
+    <div id="settingsPage" class="page"><h3>⚙️ Настройки</h3><div class="settings-row"><label>🐕 Имя питомца: </label><input type="text" id="petNameInput"><button id="renameBtn">Сохранить</button></div><div class="settings-row"><div>🎨 Тема фона:</div><div id="themeOptions"><span data-theme="default" class="pet-option">🌞 Классика</span><span data-theme="forest" class="pet-option">🌿 Лес</span><span data-theme="ocean" class="pet-option">🌊 Океан</span><span data-theme="sunset" class="pet-option">🌅 Закат</span></div></div><div class="settings-row"><div>🐱 Выбери питомца:</div><div id="petVariants"><span data-pet="panda" class="pet-option">🐵 Обезьянка</span><span data-pet="cat" class="pet-option">🐼 Панда</span><span data-pet="dog" class="pet-option">🦒 Жираф</span><span data-pet="fox" class="pet-option">😎 Крутость</span></div></div><hr><p>✨ Питомец радуется хорошим оценкам и выполненным заданиям!</p></div>
     <footer>🐾 Учись с радостью, заботься о питомце!</footer>
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    //  ГЛОБАЛЬНОЕ СОСТОЯНИЕ
-    // --------------------------------------------------------------
+
     let appState = {
         petName: "Бодрячок",
         moodLevel: 70,
@@ -267,10 +265,12 @@
         currentPet: "panda",
     };
 
+
     const petImagesSVG = {
         panda: "qw.png",
         cat: "er.png",
-        dog: "rt.png"
+        dog: "rt.png",
+        fox: "rrr.png"
     };
 
     function recalcMoodFromGrades() {
@@ -394,9 +394,9 @@
                 <canvas id="snakeCanvas" class="game-canvas" width="300" height="300"></canvas>
                 <div class="snake-controls">
                     <div class="dpad">
-                        <div></div>
+                        <div class="empty-cell"></div>
                         <button class="dpad-btn" data-dir="up">▲</button>
-                        <div></div>
+                        <div class="empty-cell"></div>
                         <button class="dpad-btn" data-dir="left">◀</button>
                         <button class="dpad-btn" data-dir="down">▼</button>
                         <button class="dpad-btn" data-dir="right">▶</button>
@@ -510,7 +510,12 @@
     }
     function applyPet(petType) {
         appState.currentPet = petType;
-        document.getElementById("petImage").src = petImagesSVG[petType];
+        const imgElement = document.getElementById("petImage");
+        if (petImagesSVG[petType]) {
+            imgElement.src = petImagesSVG[petType];
+        } else {
+            imgElement.src = petImagesSVG.panda;
+        }
         saveToLocal();
     }
 
@@ -541,3 +546,4 @@
 </script>
 </body>
 </html>
+```
